@@ -90,22 +90,20 @@ history_2 = model_2.fit(x_train, y_train, epochs = 600, batch_size = 16, \
 
 #-----------------------------Plotting-------------------------------------#
 
-# By using this mopdel, generates a prediction from a validation data
-predictions = model_2.predict(x_train)
+plt.clf()
 
-# Loss graph
-loss = history_2.history['loss']
-val_loss = history_2.history['val_loss']
+# Another way of calculating, mean absolute error graph
 
-epochs = range(1, len(loss) + 1)
+mae = history_2.history['mae']
+val_mae = history_2.history['val_mae']
+
+epochs = range(1, len(mae) + 1)
 skip = 100
-
-plt.plot(epochs[skip:], loss[skip:], 'g.', label='Training loss')
-plt.plot(epochs[skip:], val_loss[skip:], 'b.', label='Validation loss')
-plt.title('Training and validation loss')
-plt.xlabel('Epochs')
-plt.ylabel('Loss')
+loss = model_2.evaluate(x_test, y_test)
+predictions = model_2.predict(x_test)
+plt.title('Comparison of predictions and actual values')
+plt.plot(x_test, y_test, 'b.', label='Actual')
+plt.plot(x_test, predictions, 'r.', label='Predicted')
 plt.legend()
-plt.savefig('Training_loss_and_validation_loss_model2.png')
+plt.savefig('Model2_comparison.png')
 plt.show()
-
