@@ -70,16 +70,19 @@ history_1 = model_1.fit(x_train, y_train, epochs = 1000, batch_size = 16, \
 
 #-----------------------------Plotting-------------------------------------#
 
-loss = history_1.history['loss']
-val_loss = history_1.history['val_loss']
+# Skip 100 values to make it easier to read
+SKIP = 100
 
-epochs = range(1, len(loss) + 1)
+# Mean Absolute Error graph allow to meaure a loss from assumption
+mae = history_1.history['mae']
+val_mae = history_1.history['val_mae']
+epochs = range(1, len(mae) + 1)
 
-plt.plot(epochs, loss, 'g.', label='Training loss')
-plt.plot(epochs, val_loss, 'b.', label='Validation loss')
-plt.title('Training and validation loss')
+plt.plot(epochs[SKIP:], mae[SKIP:], 'g.', label='Training MAE')
+plt.plot(epochs[SKIP:], val_mae[SKIP:], 'b.', label='Validation MAE')
+plt.title('Training and validation mean absolute error')
 plt.xlabel('Epochs')
-plt.ylabel('Loss')
+plt.ylabel('MAE')
 plt.legend()
 plt.show()
 
