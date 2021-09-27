@@ -85,7 +85,7 @@ model_2.summary()
 
 #---------------------------Train a Model----------------------------------#
 
-history_2 = model_2.fit(x_train, y_train, epochs = 600, batch_size = 16, \
+history_2 = model_2.fit(x_train, y_train, epochs = 600, batch_size = 24, \
         validation_data=(x_validate, y_validate))
 
 #-----------------------------Plotting-------------------------------------#
